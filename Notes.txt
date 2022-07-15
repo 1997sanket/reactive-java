@@ -1,0 +1,27 @@
+1. Problem with the standard approach ?
+	- Blocking operation
+	- Suppose in a Controller you are taking userId, and using that userId to fetch USER and USERPreferences objects.
+	- So first you get User, THEN you get UserPreferences. These are independent operations, they could process parallely.
+	- THEN you are setting UserPreference in the User object and returning the User. 
+	- So the thread which processes your request is kept busy until you method is complete i.e User is returned.
+
+2. One solution to this problem is CompletableFuture.
+	- using this we can parallelly fetch the 2 entities, but the Thread would still be stuck, becasue we HAVE to return a User.
+	- And the CompletableFuture API is horrible, for me atleast.
+
+3. There comes Reactive Programming.
+	Now before going into reactive-programming, make sure you are familiar with Java 8 Streams API. Because these two are very 
+	similar.
+
+4. After that, you need to know about Observer and Iterator Design Patterns.
+	-Iterator: Regardless of the Container which is storing the elements, you'll just get the Iterator Implementation, and using
+			next(), you can access all the elements.
+	
+	-Obserevr: When there is going be data coming from somewhere, but you cannot be there to process it when the data arrives,
+ 			so you send an Observer which observers when the data arrives and does something. (this is usually a method)
+
+5. There is something very similar between these 2 design patterns:
+	-In Iterator you are "PULLING" data from the source.
+	-In Observer you the source is "PUSHING" data.
+	-That is why, we revised streams api. Because code wise reactive programming is quite similar to streams api.
+        
