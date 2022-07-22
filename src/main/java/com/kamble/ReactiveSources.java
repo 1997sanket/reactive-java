@@ -41,12 +41,12 @@ public class ReactiveSources {
 
     public static Flux<User> userFlux() {
         return Flux.just(
-                new User(1, "Lionel", "Messi"),
-                new User(2, "Cristiano", "Ronaldo"),
-                new User(2, "Diego", "Maradona"),
-                new User(4, "Zinedine", "Zidane"),
-                new User(5, "Jürgen", "Klinsmann"),
-                new User(6, "Gareth", "Bale")
+                new User(10, "Lionel", "Messi"),
+                new User(20, "Cristiano", "Ronaldo"),
+                new User(30, "Diego", "Maradona"),
+                new User(40, "Zinedine", "Zidane"),
+                new User(50, "Jürgen", "Klinsmann"),
+                new User(60, "Gareth", "Bale")
         ).delayElements(Duration.ofSeconds(1));
     }
 
