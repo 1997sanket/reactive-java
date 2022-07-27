@@ -24,4 +24,9 @@
 	-In Iterator you are "PULLING" data from the source.
 	-In Observer you the source is "PUSHING" data.
 	-That is why, we revised streams api. Because code wise reactive programming is quite similar to streams api.
+
+6. When we subscribe on the flux and get data one by one in a non blocking way, if our main thread ends, we won't get the data anymore. We dont need to know the internal implementation.
+
+7. We are getting data in a flux one by one, we can convert it to a stream, but that will be blocking operation, flow wont go ahead
+	till all the data is taken in to the List (checkout Exercise 3).
         
