@@ -20,13 +20,36 @@
 	-Observer: When there is going be data coming from somewhere, but you cannot be there to process it when the data arrives,
  			so you send an Observer which observers when the data arrives and does something. (this is usually a method)
 
-5. There is something very similar between these 2 design patterns:
-	-In Iterator you are "PULLING" data from the source.
-	-In Observer you the source is "PUSHING" data.
-	-That is why, we revised streams api. Because code wise reactive programming is quite similar to streams api.
+5. Similarties between Iterator and Observer design patterns:
+
+    There is something very similar between these 2 design patterns:
+        -In Iterator you are "PULLING" data from the source.
+        -In Observer you the source is "PUSHING" data.
+        -That is why, we revised streams api. Because code wise reactive programming is quite similar to streams api.
 
 6. You can get a List from the flux or an Item from Mono by blocking it.
 
 7. When a Flux is emitting event, it will emit a complete event when the source does not have any more values. OR
     It can emit an error event, in case of some error. We can easily handle either situation in the subscribe() method.
+
+8. Blocking Duration:
+    When we are blocking a Mono to get the String out of it, we can specify the duration of the block, in case the Mono is unresponsive.
+    So we code will be blocked for that particular duration, if data is received well and good, if not it will throw an IllegalStateException.
+
+9. Blocking somewhere:
+    If ms-1 calls a controller on ms-2 expecting a User object, it need user right, so there has to be blocking somewhere right.
+    Although we are returning a Mono, but somewhere it has to get the User from the Mono. So the thing is that, when a Controller returns
+    a Mono, someone has to subscribe to the Mono to get the User; hence the controller leaves it up to the Framework/Server(Netty) to do that.
+
+10. Operators:
+    Consider a scenario where a controller after getting a Mono<User> from the service, need to do certain operations on it.
+    This is where operators come into picture. Just like we have operators on a Collection Stream, we also have the same on Flux and Mono.
+    For Eg:
+            public Mono<User> getUser(String id) {
+                Mono<User> monoUser = service.getUserMono(id);
+
+                return monoUser.filter(user-> user.isActive == true);   //returns a Mono
+            }
+
+    Hence, like "filter()" there are multiple operations we can perform. So the result itself is a Mono which is given to Framework or the Server.
         
