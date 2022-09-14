@@ -52,4 +52,8 @@
             }
 
     Hence, like "filter()" there are multiple operations we can perform. So the result itself is a Mono which is given to Framework or the Server.
+	
+11. Error is a terminal event. Terminal means the consumer stops consuming. Calls onError() method of the subscriber. Catching error in subscribe is almost like a "catch"
+		-We can continue even if an error occurs using "onErrorContinue()" method. 
+		-onErrorResume will stop the current flux and return new flux, it's like a fallback
         

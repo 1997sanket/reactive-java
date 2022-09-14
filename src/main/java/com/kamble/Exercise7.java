@@ -31,7 +31,7 @@ public class Exercise7 {
         //ReactiveSources.intNumbersFluxWithRepeat().distinct().subscribe(System.out::println);
 
         // Print from intNumbersFluxWithRepeat excluding immediately repeating numbers
-        //ReactiveSources.intNumbersFluxWithRepeat().distinctUntilChanged().subscribe(System.out::println);
+        ReactiveSources.intNumbersFluxWithRepeat().distinctUntilChanged().subscribe(System.out::println);
 
         System.out.println("Press a key to end");
         System.in.read();
