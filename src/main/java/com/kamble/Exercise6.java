@@ -2,6 +2,8 @@ package com.kamble;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Exercise6 {
 
@@ -17,12 +19,13 @@ public class Exercise6 {
             2. So basically we are saying, block the code only for 5 seconds, if we dont get the data then move forward.
             3. Remember that we wont get a null to the String variable, Instead we will get an IllegalStateException after 5 seconds.
          */
-        String foo = ReactiveSources.unresponsiveMono().block(Duration.ofSeconds(5));
+//        String foo = ReactiveSources.unresponsiveMono().block(Duration.ofSeconds(5));
 
 
         // Get the value from unresponsiveFlux into a String list but give up after 5 seconds
         // Come back and do this when you've learnt about operators!
-        // TODO: Write code here
+        List<String> list = ReactiveSources.unresponsiveMono().flux().collect(Collectors.toList()).block(Duration.ofSeconds(5));
+        System.out.println(list);
 
         System.out.println("Press a key to end");
         System.in.read();
