@@ -56,4 +56,6 @@
 11. Error is a terminal event. Terminal means the consumer stops consuming. Calls onError() method of the subscriber. Catching error in subscribe is almost like a "catch"
 		-We can continue even if an error occurs using "onErrorContinue()" method. 
 		-onErrorResume will stop the current flux and return new flux, it's like a fallback
+		-doFinally() is like a "finally" block, where depending on the type of signal we can perform certain actions. 
+			Try running it with normal "intNumbersFlux" to understand better. It will run after subscribe()
         

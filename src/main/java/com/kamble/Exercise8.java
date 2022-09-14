@@ -1,6 +1,7 @@
 package com.kamble;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.SignalType;
 
 import java.io.IOException;
 
@@ -15,6 +16,18 @@ public class Exercise8 {
 
         //catching error and terminating.
         //ReactiveSources.intNumbersFluxWithException().subscribe(data -> System.out.println(data), error -> System.out.println(error));
+
+        //catch with finally
+        //doFinally() is like a "finally" block, where depending on the type of signal we can perform certain actions. Try running it with normal "intNumbersFlux" to understand better.
+        /*ReactiveSources.intNumbersFluxWithException()
+        .doFinally(signalType -> {
+            if(signalType.equals(SignalType.ON_COMPLETE)){
+                System.out.println("Proper data");
+            }
+            else if(signalType.equals(SignalType.ON_ERROR)) {
+                System.out.println("Error occured");
+            }
+        }).subscribe(data -> System.out.println(data), error -> System.out.println(error)); */
 
         //we can do something when error occurs but error is not catched
         //ReactiveSources.intNumbersFluxWithException().doOnError(err -> System.out.println(err)).subscribe(data -> System.out.println(data));
